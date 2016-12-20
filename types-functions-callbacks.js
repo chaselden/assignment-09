@@ -24,7 +24,7 @@ console.assert(addOne(1) === 2)
 // Fix the following code so that the assertion passes.
 
 var doubleNum = function(num) {
-	var newNum = num * 2;
+	var newNum = ((num) * 2);
 	return newNum;
 }
 
@@ -92,8 +92,12 @@ console.assert(sum(true, 5) === null);
 // Write a function called isNegative that will tell
 // whether a number is negative or not.
 function isNegative(number){
-	if ( number < 0 ){return true;}
- else{return false;}
+	if (number < 0){
+		return true
+  }else{
+
+	 return false
+ }
 }
 
 
@@ -106,21 +110,16 @@ console.assert(isNegative(-999) === true)
 // will return null if any of the inputs is negative.
 // To avoid repeating yourself, use your isNegative
 // function inside your sum funciton ***
-function sum(a,b){
- return (a + b);
 
-if ( typeof a === true || typeof b === true){
-	return null;
+var sum = function(N1, N2) {
+	if(isNegative(N1) === true || isNegative(N2) === true ){
+		return null
+  }else{
+	  return (N1 + N2)
+	}
 }
- else{
-	 return(a + b);
-
- }
-}
-
-555
+// console.log('5+5', 5 + 5)
 console.assert(sum(5,-5) === null)
-
 
 // Part 5
 
@@ -131,32 +130,18 @@ console.assert(sum(5,-5) === null)
 
 var minimum = function(num1, num2, num3, num4){
 
-      if   ((num1 < num2) && (num1 < num3) && (num1 < num4)) {
-    return  num1;
-	}
-		else
-		 if( (num2 < num3) && (num2 < num4)) {
-		return  num2;
-	}
-    else
-		 if((num3 < num4) && (num3 < num1)) {
-    return  num3;
-	}
-  else{
-		return num4;
-	}
+	if(Math.min(num1, num2, num3) < Math.min(num2, num3, num4)){
+	return Math.min(num1, num2, num3, num4)
+		}else{
+			return Math.min(num1, num2, num3, num4)
+		}
+}
 
-	}
+console.assert(minimum(1,2,4,0) === 0);
+console.assert(minimum(1000,-2,-99,50) === -99);
+console.assert(minimum(-1000,-2,-99,50) === -1000);
+console.assert(minimum(1000,-2,99,50) === -2);
 
-
-
-(minimum(1,2,4,0) === 0)
-log('_')
-(minimum(1000,-2,-99,50) === -99)
-log('_')
-log(minimum(-1000,-2,-99,50) === -1000)
-log('_')
-(minimum(1000,-2,99,50) === -2)
 
 
 // Part 7
@@ -164,6 +149,14 @@ log('_')
 // Using logical operators, write a function that will
 // return true if either input is a string, but not
 // both or neither.
+var justOneString = function(num1,num2){
+	if (typeof num1 === 'string' && typeof num2 === 'number' || typeof num1 ==='number' && typeof num2 === 'string'){
+		return true
+	} else {
+		return false
+	}
+}
+console.log('a',5)
 
 console.assert(justOneString('a',5) === true)
 console.assert(justOneString(6,'dotron') === true)
@@ -189,6 +182,11 @@ var incrementGlobalNumber = function(){
 var doubleGlobalNumber = function() {
 	NUMBER = NUMBER * 2
 }
+var doTwice = function(num){
+					num()
+					num()
+					return NUMBER
+}
 
 doTwice(incrementGlobalNumber)
 console.assert(NUMBER === 12)
@@ -205,7 +203,12 @@ console.assert(NUMBER === 48)
 
 var ORACLE = 'NO'
 
-conditionallyInvoke(doubleGlobalNumber)
+var conditionallyInvoke = function (arg){
+	if(ORACLE = 'YES'){
+		arg()
+	}
+
+}
 console.assert(NUMBER === 48)
 
 ORACLE = 'YES'
